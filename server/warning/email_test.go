@@ -1,38 +1,39 @@
 package warning_test
 
 import (
-	"testing"
-	"github.com/brokercap/Bifrost/server/warning"
 	"log"
 	"strings"
+	"testing"
+
+	"github.com/brokercap/Bifrost/server/warning"
 )
 
-func TestUserSplit(t *testing.T){
-	p := make(map[string]string,0)
+func TestUserSplit(t *testing.T) {
+	p := make(map[string]string, 0)
 	p["TO"] = "jc3wish@126.com;"
-	tmp := strings.Split(p["TO"],";")
-	log.Println("len:",len(tmp))
+	tmp := strings.Split(p["TO"], ";")
+	log.Println("len:", len(tmp))
 	log.Println(tmp[len(tmp)-1])
 	tmp = tmp[:len(tmp)-1]
-	log.Println("tmp",tmp)
+	log.Println("tmp", tmp)
 }
 
-func TestSendWarning(t *testing.T){
+func TestSendWarning(t *testing.T) {
 	obj := &warning.Email{}
 
-	p := make(map[string]interface{},0)
+	p := make(map[string]interface{}, 0)
 
-	p["FROM"] = "237633006@qq.com"
-	p["TO"] = "jc3wish@126.com"
-	p["Password"] = "sdfqkydtluocwuzcbdfr45"
-	p["SmtpHost"] = "smtp.qq.com"
-	p["SmtpPort"] = 25
+	p["FROM"] = "ops@roboofood.com"
+	p["TO"] = "yan.jiang@roboofood.com"
+	p["Password"] = "A83VPMiKtdSAM5xh"
+	p["SmtpHost"] = "smtp.feishu.cn"
+	p["SmtpPort"] = 465
 	p["NickName"] = "test nick name"
 
-	err := obj.SendWarning(p,"test warning title","it is test")
-	if err != nil{
+	err := obj.SendWarning(p, "test warning title", "it is test")
+	if err != nil {
 		t.Errorf(err.Error())
-	}else{
+	} else {
 		log.Println("success")
 	}
 }
